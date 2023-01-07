@@ -102,9 +102,11 @@ for (let i = 0; i < finances.length; i++) {
 
 }
 
-
+// Calculate average change
 let averageChange = netProfitLoss/totalMonth;
 
+
+// calculate the gratest change in profit/loss
 let greatestIncrease = finances[0][1];
 let greatestDecrease = finances[0][1];
 let increaseMonth;
@@ -125,7 +127,7 @@ for (let i = 0; i < finances.length; i++) {
     }
 }
 
-
+// print the answers to the terminal
 console.log(`
 Financial Analysis
 ----------------------------

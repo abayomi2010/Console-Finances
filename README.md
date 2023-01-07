@@ -1,7 +1,7 @@
 # Console-Finances
 
 ## Overview
-In this challenge, I used the concepts you've learned to complete the following:
+In this challenge, I used the concepts I've learned to complete the following:
 
 * The total number of months included in the dataset.
 

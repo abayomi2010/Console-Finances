@@ -95,22 +95,45 @@ console.log(totalMonth)
 //Created a variable(equal to zero) for the net total amount pf proft/loss
 let totalProfitLoss = 0;
 
-// Created an empty array for net total amount of Profit/Losses over the entire period.
-let profitLoss = []
+// The net total amount of Profit/Losses over the entire period.
+let netProfitLoss = 0;
 for (let i = 0; i < finances.length; i++) {
-    for (let j = 1; j < finances[i].length; j++){
-        profitLoss.push(finances[i][1])
+        netProfitLoss += (finances[i][1]);
+
+}
+
+
+let averageChange = netProfitLoss/totalMonth;
+
+let greatestIncrease = finances[0][1];
+let greatestDecrease = finances[0][1];
+let increaseMonth;
+let decreaseMonth;
+
+for (let i = 0; i < finances.length; i++) {
+    if (finances[i][1] > greatestIncrease){
+        greatestIncrease = finances[i][1];
+        increaseMonth = finances[i][0];
     }
 }
 
-console.log(`Total Months: ${totalMonth}`)
 
-let netProfitLoss = 0;
-
-for (let i = 0; i < profitLoss.length; i++){
-    netProfitLoss = netProfitLoss + profitLoss[i]
+for (let i = 0; i < finances.length; i++) {
+    if (finances[i][1] < greatestDecrease){
+        greatestDecrease = finances[i][1];
+        decreaseMonth= finances[i][0];
+    }
 }
-console.log(netProfitLoss);
 
-// The net total amount of Profit/Losses over the entire period.
-console.log(`Total: $ ${netProfitLoss}`)
+
+console.log(`
+Financial Analysis
+----------------------------
+
+Total Months: ${totalMonth}
+Total: $${netProfitLoss}
+Average Change: $${averageChange.toFixed()}
+Greatest Increase in Profits: ${increaseMonth} ($${greatestIncrease})
+Greatest Decrease in Profits: ${decreaseMonth} ($${greatestDecrease})
+
+`)

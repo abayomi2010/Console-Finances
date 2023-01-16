@@ -14,4 +14,10 @@ In this challenge, I used the concepts I've learned to complete the following:
 * The greatest decrease in losses (date and amount) over the entire period.
 
 ### Screenshot of the console window
-![](./images/Screenshot%20(11).png)
+![](./images/Screenshot%20(12).png)
+
+
+Link to the [GitHub repository](https://github.com/abayomi2010/Console-Finances)
+
+Link to the deployed [site](https://abayomi2010.github.io/Console-Finances/)
+

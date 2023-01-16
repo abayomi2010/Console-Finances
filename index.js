@@ -102,30 +102,34 @@ for (let i = 0; i < finances.length; i++) {
 
 }
 
-// Calculate average change
-let averageChange = netProfitLoss/totalMonth;
 
+//   How to find the average changes in Profit / Loss over the entire period?
+    let totalChange = 0; 
+    let greatestIncreaseDate = finances[0][0];
+    let greatestIncreaseAmount = 0;
+    let greatestDecreaseDate = finances[0][0];
+    let greatestDecreaseAmount = 0;
 
-// calculate the gratest change in profit/loss
-let greatestIncrease = finances[0][1];
-let greatestDecrease = finances[0][1];
-let increaseMonth;
-let decreaseMonth;
+    for (let i = 1; i < finances.length; i++) { // iterate through the list of finances, startting at the second month (since there is no cahnge in profit for the first month)
+        let currentProfit = finances[i][1]; // get the current month's proffit
+        let previousProfit = finances[i-1][1]; // get the previous month's profit
+        let changeInProfit = currentProfit - previousProfit; // calculate the change in profit between the current month and previous month
+        totalChange += changeInProfit; // add the change in profit to the total change
 
-for (let i = 0; i < finances.length; i++) {
-    if (finances[i][1] > greatestIncrease){
-        greatestIncrease = finances[i][1];
-        increaseMonth = finances[i][0];
+        // if the change in profit is greater than the greatest increase amount, update the greatest increase variables.
+        if (changeInProfit > greatestIncreaseAmount) {
+            greatestIncreaseDate = finances[i][0];
+            greatestIncreaseAmount = changeInProfit;
+
+        //  If the change in profits is less than the current greatest decrease in profits, update the greatest decrease variables
+        } else if (changeInProfit < greatestDecreaseAmount) {
+            greatestDecreaseDate = finances[i][0];
+            greatestDecreaseAmount = changeInProfit;
+        }
     }
-}
+    // divide the total change in profits by the number of changes in profits
+    let averageChange = totalChange / (finances.length - 1);
 
-
-for (let i = 0; i < finances.length; i++) {
-    if (finances[i][1] < greatestDecrease){
-        greatestDecrease = finances[i][1];
-        decreaseMonth= finances[i][0];
-    }
-}
 
 // print the answers to the terminal
 console.log(`
@@ -134,8 +138,7 @@ Financial Analysis
 
 Total Months: ${totalMonth}
 Total: $${netProfitLoss}
-Average Change: $${averageChange.toFixed()}
-Greatest Increase in Profits: ${increaseMonth} ($${greatestIncrease})
-Greatest Decrease in Profits: ${decreaseMonth} ($${greatestDecrease})
-
+Average Change: $${averageChange.toFixed(2)};
+Greatest increase in profits in ${greatestIncreaseDate}: was ($${greatestIncreaseAmount});
+Greatest decrease in profits in ${greatestDecreaseDate}: was ($${greatestDecreaseAmount});
 `)
